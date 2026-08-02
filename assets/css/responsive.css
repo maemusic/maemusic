@@ -1,0 +1,217 @@
+/* Breakpoints preserve hierarchy and make touch targets comfortably large. */
+@media (max-width: 800px) {
+  :root {
+    --container: min(100% - 36px, 1280px);
+    --header-height: 64px;
+  }
+  .nav-links {
+    gap: 0.72rem;
+  }
+  .nav-links > a:not(.nav-install) {
+    display: none;
+  }
+  .nav-install {
+    padding: 0.45rem 0.6rem;
+  }
+  .hero {
+    min-height: 780px;
+    padding-top: calc(var(--header-height) + 2rem);
+  }
+  .hero-title {
+    margin-top: 3rem;
+    font-size: clamp(3.75rem, 16vw, 7rem);
+    line-height: 0.8;
+  }
+  .hero-bottom,
+  .section-heading,
+  .compat-top,
+  .docs-heading {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 1.8rem;
+  }
+  .hero-actions {
+    justify-content: flex-start;
+  }
+  .hero-actions .button {
+    flex: 1;
+  }
+  .scroll-cue {
+    padding-top: 3rem;
+  }
+  .hero-terminal {
+    align-self: stretch;
+  }
+  .section-heading .eyebrow {
+    grid-column: auto;
+  }
+  .command-pair {
+    grid-template-columns: 1fr;
+  }
+  .command-block {
+    min-height: 152px;
+  }
+  .command-block.compact {
+    min-height: 124px;
+  }
+  .copy-button {
+    top: 3.65rem;
+  }
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  .story-panel {
+    min-height: 780px;
+  }
+  .feature-title {
+    font-size: clamp(3.3rem, 15vw, 6rem);
+  }
+  .radio-visual {
+    width: min(85vw, 420px);
+    min-height: min(85vw, 420px);
+    margin-inline: auto;
+  }
+  .fx-stage {
+    min-height: 330px;
+  }
+  .fx-cards {
+    gap: 0.45rem;
+  }
+  .fx-cards button {
+    min-height: 60px;
+  }
+  .environment-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .architecture-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .architecture-inner .eyebrow {
+    grid-column: auto;
+  }
+  .architecture-flow {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 0.4rem;
+    padding: 1.25rem;
+  }
+  .flow-node {
+    width: min(100%, 220px);
+  }
+  .flow-arrow {
+    width: 1px;
+    height: 20px;
+  }
+  .flow-arrow i {
+    width: 100%;
+    height: 40%;
+    animation-name: flow-vertical;
+  }
+  @keyframes flow-vertical {
+    to {
+      transform: translateY(300%);
+    }
+  }
+  .docs-heading {
+    align-items: start;
+  }
+  .command-library {
+    grid-template-columns: 1fr;
+  }
+  .command-card:nth-child(odd),
+  .command-card:nth-child(even) {
+    padding-right: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+  .playground {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .playground-output {
+    min-height: 245px;
+  }
+  .site-footer {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 460px) {
+  .button {
+    width: 100%;
+  }
+  .hero-actions {
+    display: grid;
+    width: 100%;
+  }
+  .hero-title {
+    font-size: clamp(3.4rem, 17vw, 5rem);
+  }
+  .terminal-body {
+    min-height: 195px;
+    padding: 1rem;
+  }
+  .terminal-bar {
+    padding-inline: 0.7rem;
+  }
+  .command-block {
+    padding: 1.1rem;
+  }
+  .copy-button {
+    right: 1rem;
+  }
+  .command-block pre {
+    padding-top: 1.8rem;
+  }
+  .environment {
+    min-height: 120px;
+    padding: 1rem;
+  }
+  .environment-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fx-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fx-stage {
+    gap: 2rem;
+  }
+  .massive-title {
+    font-size: clamp(3rem, 14vw, 4.2rem);
+  }
+  .philosophy-title {
+    font-size: clamp(3.5rem, 15vw, 5rem);
+  }
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+  .footer-brand {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .architecture-flow {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .architecture-notes {
+    grid-template-columns: 1fr 1fr;
+  }
+  .architecture-notes article {
+    min-height: 145px;
+  }
+}
+
+@media (max-width: 460px) {
+  .architecture-notes {
+    grid-template-columns: 1fr;
+  }
+}

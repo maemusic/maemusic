@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+  <head>
+    <!-- MAE's static, no-build landing page. -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Minimalist Audio Engine is a local-first command-line ecosystem for Windows: an instant router, isolated app sandboxes, and a resilient background daemon." />
+    <meta name="theme-color" content="#08090b" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://themayukhg.github.io/CLIMusicPlayer/" />
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Minimalist Audio Engine — The local-first CLI ecosystem" />
+    <meta property="og:description" content="A Core Hub, isolated apps, instant PowerShell routing, and a zero-idle daemon for Windows." />
+    <meta property="og:url" content="https://themayukhg.github.io/CLIMusicPlayer/" />
+    <meta property="og:image" content="https://themayukhg.github.io/CLIMusicPlayer/assets/images/og-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Minimalist Audio Engine — The local-first CLI ecosystem" />
+    <meta name="twitter:description" content="A Core Hub, isolated apps, instant PowerShell routing, and a zero-idle daemon for Windows." />
+    <meta name="twitter:image" content="https://themayukhg.github.io/CLIMusicPlayer/assets/images/og-card.svg" />
+    <title>Minimalist Audio Engine — The local-first CLI ecosystem</title>
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/typography.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/hero.css" />
+    <link rel="stylesheet" href="assets/css/features.css" />
+    <link rel="stylesheet" href="assets/css/docs.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- ES modules require an HTTP origin in Chrome. This selector preserves direct file opening. -->
+    <script>
+      if (window.location.protocol === "file:") {
+        document.write('<script defer src="assets/js/file-compat.js"><\/script>');
+      } else {
+        document.write('<script type="module" src="assets/js/app.js"><\/script>');
+        document.write('<link rel="manifest" href="manifest.webmanifest" />');
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Minimalist Audio Engine",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Windows",
+        "isAccessibleForFree": true,
+        "license": "https://github.com/TheMayukhG/CLIMusicPlayer/blob/main/LICENSE",
+        "url": "https://github.com/TheMayukhG/CLIMusicPlayer",
+        "description": "A local-first command-line ecosystem for Windows with isolated application sandboxes, a native PowerShell router, and a resilient background daemon."
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="page-loader" aria-hidden="true"><span>MAE</span><i></i></div>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header" data-header>
+      <nav class="nav container" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Minimalist Audio Engine home">
+          <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M4 21.5V10.5L16 4l12 6.5v11L16 28 4 21.5Z" /><path d="M10 17.5v-3l6-3.2 6 3.2v3l-6 3.2-6-3.2Z" /></svg>
+          <span>MAE / Core + Apps</span>
+        </a>
+        <div class="nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#docs">Docs</a>
+          <a href="https://github.com/TheMayukhG/CLIMusicPlayer" target="_blank" rel="noreferrer">GitHub <span class="external" aria-hidden="true">↗</span></a>
+          <a class="nav-install" href="#install">Install</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: system. Change theme" title="Change theme"><span aria-hidden="true">◐</span><span class="sr-only" data-theme-label>System</span></button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section id="top" class="hero section container" aria-labelledby="hero-title">
+        <p class="eyebrow reveal">Open source · Windows · Local first</p>
+        <h1 id="hero-title" class="hero-title">
+          <span class="hero-title-line reveal-text">Minimalist</span>
+          <span class="hero-title-line reveal-text">Audio Engine<span class="period">.</span></span>
+        </h1>
+        <div class="hero-bottom">
+          <div class="hero-copy reveal">
+            <p>Music now.<br />A CLI ecosystem next.</p>
+            <p class="quiet">One hub. Isolated apps.<br />Zero terminal hijacking.</p>
+          </div>
+          <div class="hero-actions reveal">
+            <a class="button button-primary magnetic" href="#install">Get started <span aria-hidden="true">↓</span></a>
+            <a class="button button-quiet magnetic" href="#how-it-works">See the architecture <span aria-hidden="true">↘</span></a>
+          </div>
+        </div>
+        <a class="scroll-cue" href="#install" aria-label="Scroll to installation"><span>Scroll to explore</span><i aria-hidden="true"></i></a>
+        <div class="terminal hero-terminal reveal-terminal" data-terminal-demo aria-label="Animated MAE terminal demonstration">
+          <div class="terminal-bar"><span></span><span></span><span></span><b>PowerShell</b><em>— □ ×</em></div>
+          <div class="terminal-body" aria-live="polite">
+            <p><mark>PS C:\Users\mayukh&gt;</mark> <span data-demo-command></span><i class="caret"></i></p>
+            <div data-demo-output></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="install" class="install section container" aria-labelledby="install-title">
+        <div class="section-heading">
+          <p class="eyebrow reveal">Install once</p>
+          <h2 id="install-title" class="display reveal-text">One command.<br />Then <em>mae</em>.</h2>
+          <p class="section-intro reveal">Your first MAE app bootstraps the Core Hub, router, and registry. Every later app receives its own sandbox inside <code>%LOCALAPPDATA%\MinimalAudioEngine</code> without disturbing the rest.</p>
+        </div>
+        <div class="command-stack" data-command-stack>
+          <article class="command-block reveal-card">
+            <div class="command-meta"><span>01 / Bootstrap MAE Music</span><span>PowerShell</span></div>
+            <pre><code><span class="token-function">irm</span> <span class="token-url">https://raw.githubusercontent.com/TheMayukhG/CLIMusicPlayer/main/scripts/install.ps1</span> <span class="token-operator">|</span> <span class="token-function">iex</span></code></pre>
+            <button class="copy-button" type="button" data-copy="irm https://raw.githubusercontent.com/TheMayukhG/CLIMusicPlayer/main/scripts/install.ps1 | iex" aria-label="Copy install command"><span data-copy-label>Copy</span><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="1" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg></button>
+          </article>
+          <div class="command-pair">
+            <article class="command-block compact reveal-card">
+              <div class="command-meta"><span>02 / Update</span><span>Any time</span></div>
+              <pre><code><span class="token-function">update-music</span></code></pre>
+              <button class="copy-button" type="button" data-copy="update-music" aria-label="Copy update command"><span data-copy-label>Copy</span><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="1" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0 1 1h3" /></svg></button>
+            </article>
+            <article class="command-block compact reveal-card">
+              <div class="command-meta"><span>03 / Stop the daemon</span><span>Clean exit</span></div>
+              <pre><code><span class="token-function">mae exit</span></code></pre>
+              <button class="copy-button" type="button" data-copy="mae exit" aria-label="Copy exit command"><span data-copy-label>Copy</span><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="1" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></svg></button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="story" aria-label="MAE ecosystem features">
+        <article class="story-panel feature-search section" data-story>
+          <div class="container story-grid">
+            <div>
+              <p class="eyebrow">01 / A shared core</p>
+              <h2 class="feature-title">Hub and<br /><em>spoke.</em></h2>
+              <p class="feature-description">MAE is a Core Hub with isolated application sandboxes, not a pile of competing installs. Music lives cleanly beside the Todo, Notes, and Timers apps to come.</p>
+            </div>
+            <div class="mini-terminal" aria-label="Core Hub registry example">
+              <p><mark>›</mark> %LOCALAPPDATA%\MinimalAudioEngine</p>
+              <div class="search-result active">core\registry.json</div>
+              <div class="search-result">apps\music\music.exe</div>
+              <div class="search-result">apps\todo\&lt;coming soon&gt;</div>
+            </div>
+          </div>
+        </article>
+        <article class="story-panel feature-queue section" data-story>
+          <div class="container story-grid">
+            <div>
+              <p class="eyebrow">02 / Your terminal stays yours</p>
+              <h2 class="feature-title">No loop.<br /><em>No lock.</em></h2>
+              <p class="feature-description">The old interactive loop is gone. A headless daemon waits in the background at zero idle CPU, executes the request, and gives your shell back in under 200 ms.</p>
+            </div>
+            <div class="queue-visual" aria-label="Background daemon example">
+              <p><mark>›</mark> mae skip</p>
+              <div class="track-row current"><span>ROUTED</span> daemon received command <i></i></div>
+              <div class="track-row"><span>DONE</span> playback advanced</div>
+              <div class="track-row"><span>0.18s</span> terminal control returned</div>
+            </div>
+          </div>
+        </article>
+        <article class="story-panel feature-radio section" data-story>
+          <div class="container story-grid">
+            <div>
+              <p class="eyebrow">03 / One flat namespace</p>
+              <h2 class="feature-title">Native<br /><em>routing.</em></h2>
+              <p class="feature-description">A PowerShell function injected into your profile reads the live registry and immediately maps commands such as <code>mae play</code> or <code>mae skip</code> to the right sandboxed executable.</p>
+            </div>
+            <div class="radio-visual" aria-label="PowerShell router example">
+              <span class="radio-orbit orbit-a"></span><span class="radio-orbit orbit-b"></span><span class="radio-dot"></span>
+              <p>$PROFILE → registry.json</p>
+              <b>mae play</b><small>music.exe / isolated</small>
+            </div>
+          </div>
+        </article>
+        <article class="story-panel feature-fx section" data-story>
+          <div class="container story-grid">
+            <div>
+              <p class="eyebrow">04 / Local, structured, reliable</p>
+              <h2 class="feature-title">TCP.<br /><em>NDJSON.</em></h2>
+              <p class="feature-description">Non-blocking localhost TCP sockets replace fragile named pipes. Newline-delimited JSON keeps every command structured, while a localized random token authenticates the conversation.</p>
+            </div>
+            <div class="mini-terminal" aria-label="NDJSON payload example">
+              <p><mark>›</mark> 127.0.0.1:local</p>
+              <div class="search-result active">{&quot;cmd&quot;:&quot;play&quot;,&quot;q&quot;:&quot;lofi&quot;}</div>
+              <div class="search-result">{&quot;auth&quot;:&quot;local-random-token&quot;}</div>
+              <div class="search-result">{"ok":true,"state":"queued"}</div>
+            </div>
+          </div>
+        </article>
+        <article class="story-panel feature-binary section" data-story>
+          <div class="container centered-feature">
+            <p class="eyebrow">05 / No blocking prompts</p>
+            <h2 class="massive-title">Prompt.<br /><span>Respond.</span><br /><span>Dispatch.</span><br /><span>Continue.</span></h2>
+            <p class="feature-description">Search results return to an ephemeral CLI. You choose 1–5 there, then it sends a fresh stateless command to the daemon. Nothing waits. Nothing freezes.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="compatibility section container" aria-labelledby="ecosystem-title">
+        <p class="eyebrow reveal">06 / One namespace, many tools</p>
+        <div class="compat-top">
+          <h2 id="ecosystem-title" class="display reveal-text">The MAE<br /><em>ecosystem.</em></h2>
+          <p class="section-intro reveal">The Hub gives every app a shared command surface and an independent runtime. Add an app without creating dependency conflicts or overwriting another tool.</p>
+        </div>
+        <div class="environment-grid" aria-label="MAE applications">
+          <div class="environment reveal-card"><span class="env-mark">M</span><span>MAE Music · available</span></div>
+          <div class="environment reveal-card"><span class="env-mark">T</span><span>MAE Todo · soon</span></div>
+          <div class="environment reveal-card"><span class="env-mark">N</span><span>MAE Notes · soon</span></div>
+          <div class="environment reveal-card"><span class="env-mark">◷</span><span>MAE Timers · soon</span></div>
+          <div class="environment reveal-card"><span class="env-mark">{ }</span><span>registry.json · shared</span></div>
+          <div class="environment reveal-card"><span class="env-mark">⊙</span><span>Core Hub · local</span></div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="architecture section" aria-labelledby="architecture-title">
+        <div class="container architecture-inner">
+          <p class="eyebrow reveal">07 / How it works</p>
+          <h2 id="architecture-title" class="display reveal-text">Fast by<br /><em>design.</em></h2>
+          <div class="architecture-flow reveal-card" aria-label="MAE command flow from your terminal through the PowerShell router, registry, sandboxed application, localhost daemon, and player">
+            <div class="flow-node">Your terminal</div><div class="flow-arrow"><i></i></div>
+            <div class="flow-node emphasis">PowerShell router</div><div class="flow-arrow"><i></i></div>
+            <div class="flow-node">registry.json</div><div class="flow-arrow"><i></i></div>
+            <div class="flow-node emphasis">MAE Music sandbox</div><div class="flow-arrow"><i></i></div>
+            <div class="flow-node">localhost daemon</div><div class="flow-arrow"><i></i></div>
+            <div class="flow-node">mpv + yt-dlp</div>
+          </div>
+          <div class="architecture-notes reveal-card">
+            <article><span>01</span><h3>Core Hub</h3><p>Creates one registry and keeps each app in its own sandbox under LocalAppData.</p></article>
+            <article><span>02</span><h3>Native router</h3><p>Your PowerShell profile resolves the current registry before an executable is launched.</p></article>
+            <article><span>03</span><h3>Local IPC</h3><p>Authenticated TCP sockets exchange non-blocking NDJSON messages on localhost.</p></article>
+            <article><span>04</span><h3>Stateless choices</h3><p>The short-lived CLI handles a result selection and sends the next command fresh.</p></article>
+            <article><span>05</span><h3>Self bootstrapping</h3><p>The first install builds the platform; later installs register only their own commands.</p></article>
+            <article><span>06</span><h3>Clean lifecycle</h3><p>daemon.log records state. <code>mae exit</code> aggressively terminates mpv and prevents orphaned audio.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="philosophy section container" aria-labelledby="philosophy-title">
+        <p class="eyebrow reveal">08 / Installation philosophy</p>
+        <h2 id="philosophy-title" class="philosophy-title reveal-text">First app:<br /><em>build the core.</em></h2>
+        <p class="philosophy-copy reveal">Every subsequent MAE app is a good citizen. It receives an isolated runtime, adds only its own routes to the shared registry, and never overwrites the tools already in your workflow.</p>
+        <a class="text-link magnetic reveal" href="#install">Bootstrap MAE Music <span aria-hidden="true">↓</span></a>
+      </section>
+
+      <section id="docs" class="docs section container" aria-labelledby="docs-title">
+        <div class="docs-heading">
+          <div><p class="eyebrow reveal">Flat namespace</p><h2 id="docs-title" class="display reveal-text">The commands<br /><em>you keep.</em></h2></div>
+          <p class="section-intro reveal">The PowerShell router turns every registered app into one calm, predictable command surface.</p>
+        </div>
+        <div class="command-library" data-command-library aria-label="MAE command reference"></div>
+      </section>
+
+      <section class="playground section container" aria-labelledby="playground-title">
+        <div class="playground-copy">
+          <p class="eyebrow reveal">Terminal playground</p>
+          <h2 id="playground-title" class="display reveal-text">Try a<br /><em>command.</em></h2>
+          <p class="section-intro reveal">A local visual simulation of the router and daemon. Nothing you type leaves this page.</p>
+          <div class="prompt-chips" aria-label="Example commands">
+            <button type="button" data-prompt="mae play after dark">mae play after dark</button>
+            <button type="button" data-prompt="mae q resonance">mae q resonance</button>
+            <button type="button" data-prompt="mae status">mae status</button>
+            <button type="button" data-prompt="mae exit">mae exit</button>
+          </div>
+        </div>
+        <div class="playground-terminal reveal-card" data-playground>
+          <div class="terminal-bar"><span></span><span></span><span></span><b>mae / localhost</b><em>local demo</em></div>
+          <div class="playground-output" data-playground-output aria-live="polite">
+            <p class="muted">Minimalist Audio Engine Core v2.0.0</p>
+            <p class="muted">Type <kbd>mae help</kbd> to see available commands.</p>
+          </div>
+          <form class="terminal-input-row" data-playground-form>
+            <label class="sr-only" for="terminal-input">MAE terminal command</label><span aria-hidden="true">›</span>
+            <input id="terminal-input" data-playground-input autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="mae play after dark" />
+            <button type="submit">Run <span aria-hidden="true">↵</span></button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <div class="footer-brand">
+        <a class="brand" href="#top"><svg aria-hidden="true" viewBox="0 0 32 32"><path d="M4 21.5V10.5L16 4l12 6.5v11L16 28 4 21.5Z" /><path d="M10 17.5v-3l6-3.2 6 3.2v3l-6 3.2-6-3.2Z" /></svg><span>MAE / Core + Apps</span></a>
+        <p>Local-first tools for people who live in terminals.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/TheMayukhG/CLIMusicPlayer" target="_blank" rel="noreferrer">GitHub ↗</a>
+        <a href="https://github.com/TheMayukhG/CLIMusicPlayer/blob/main/LICENSE" target="_blank" rel="noreferrer">License ↗</a>
+        <span>Core version 2.0.0</span>
+      </div>
+      <div class="footer-meta">
+        <span>Built by <a href="https://github.com/TheMayukhG" target="_blank" rel="noreferrer">Mayukh ↗</a></span>
+        <span>MAE Music powered by <a href="https://mpv.io" target="_blank" rel="noreferrer">mpv</a> + <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noreferrer">yt-dlp</a></span>
+      </div>
+    </footer>
+  </body>
+</html>

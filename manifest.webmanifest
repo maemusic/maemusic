@@ -1,0 +1,12 @@
+{
+  "name": "Minimalist Audio Engine",
+  "short_name": "MAE",
+  "description": "Music for people who live in terminals.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#08090b",
+  "theme_color": "#08090b",
+  "icons": [
+    { "src": "assets/icons/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

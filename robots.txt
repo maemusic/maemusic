@@ -1,0 +1,5 @@
+# Search-engine policy for Minimalist Audio Engine.
+User-agent: *
+Allow: /
+
+Sitemap: https://themayukhg.github.io/CLIMusicPlayer/sitemap.xml

@@ -1,0 +1,48 @@
+/* Type system: large editorial display paired with practical terminal monospace. */
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.eyebrow {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.display {
+  max-width: 10ch;
+  font-size: clamp(3.3rem, 8.6vw, 8rem);
+  font-weight: 610;
+  letter-spacing: -0.075em;
+  line-height: 0.87;
+}
+.display em,
+.feature-title em,
+.philosophy-title em {
+  color: var(--accent);
+  font-style: normal;
+}
+.section-intro {
+  max-width: 33rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.55;
+}
+.quiet {
+  color: var(--quiet);
+}
+kbd {
+  padding: 0.12em 0.38em;
+  border: 1px solid var(--line-strong);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+}

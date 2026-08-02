@@ -1,0 +1,212 @@
+/* Command reference and the interactive local terminal. */
+.docs {
+  padding-top: clamp(6rem, 13vw, 12rem);
+  padding-bottom: clamp(7rem, 13vw, 12rem);
+  border-top: 1px solid var(--line);
+}
+
+.docs-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.command-library {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--line);
+}
+
+.command-card {
+  position: relative;
+  min-height: 116px;
+  padding: 1.3rem 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  transition: background-color 0.3s;
+}
+
+.command-card:nth-child(odd) {
+  padding-right: 1.5rem;
+}
+
+.command-card:nth-child(even) {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--line);
+}
+
+.command-card button {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  text-align: left;
+}
+
+.command-card code {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.command-card .command-shortcut {
+  padding: 0.22rem 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--quiet);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+}
+
+.command-card .command-description {
+  display: grid;
+  grid-template-rows: 0fr;
+  max-width: 28rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+  transition:
+    grid-template-rows 0.35s var(--ease-out),
+    margin 0.35s;
+}
+
+.command-card .command-description > span {
+  overflow: hidden;
+}
+
+.command-card.is-open {
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+
+.command-card.is-open .command-description {
+  grid-template-rows: 1fr;
+  margin-top: 0.8rem;
+}
+
+.command-card button:hover code {
+  text-decoration: underline;
+  text-decoration-color: var(--accent-dim);
+  text-underline-offset: 0.3rem;
+}
+
+.playground {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  align-items: center;
+  gap: clamp(2rem, 8vw, 8rem);
+  padding-top: clamp(6rem, 13vw, 11rem);
+  padding-bottom: clamp(7rem, 14vw, 12rem);
+  border-top: 1px solid var(--line);
+}
+
+.prompt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.prompt-chips button {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.prompt-chips button:hover {
+  border-color: var(--accent-dim);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.playground-terminal {
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-raised);
+  box-shadow: var(--shadow);
+}
+
+.playground-output {
+  min-height: 280px;
+  max-height: 370px;
+  padding: 1.3rem 1.4rem;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.75;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.playground-output p {
+  margin-bottom: 0.5rem;
+}
+
+.playground-output .muted {
+  color: var(--quiet);
+}
+
+.playground-output .success {
+  color: var(--accent);
+}
+
+.playground-output .response {
+  color: var(--muted);
+}
+
+.terminal-input-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.terminal-input-row input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.8rem;
+}
+
+.terminal-input-row input::placeholder {
+  color: var(--quiet);
+}
+
+.terminal-input-row button {
+  padding: 0.32rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.66rem;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.terminal-input-row button:hover {
+  border-color: var(--accent-dim);
+  color: var(--text);
+}

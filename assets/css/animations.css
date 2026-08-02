@@ -1,0 +1,98 @@
+/* Declarative entry motion. JavaScript only adds the state class when relevant. */
+.reveal,
+.reveal-card,
+.reveal-terminal {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition:
+    opacity 0.75s var(--ease-out),
+    transform 0.75s var(--ease-out);
+}
+
+.reveal-card {
+  transform: translate3d(0, 28px, 0) scale(0.985);
+}
+
+.reveal-text {
+  opacity: 0;
+  transform: translate3d(0, 38px, 0);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+}
+
+.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-card.is-revealed {
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-story] .story-grid > * {
+  opacity: 0.15;
+  transform: translate3d(0, 35px, 0);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+}
+
+[data-story].is-active .story-grid > * {
+  opacity: 1;
+  transform: none;
+}
+
+[data-story].is-active .story-grid > *:last-child {
+  transition-delay: 0.12s;
+}
+
+.story-panel .mini-terminal,
+.story-panel .queue-visual,
+.story-panel .radio-visual,
+.story-panel .fx-stage {
+  transition:
+    transform 0.8s var(--ease-out),
+    opacity 0.8s var(--ease-out),
+    box-shadow 0.5s;
+}
+
+[data-story].is-active .mini-terminal,
+[data-story].is-active .queue-visual,
+[data-story].is-active .radio-visual,
+[data-story].is-active .fx-stage {
+  box-shadow: 0 30px 80px color-mix(in srgb, var(--bg) 70%, transparent);
+}
+
+.magnetic {
+  will-change: transform;
+}
+
+.command-block,
+.environment {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal,
+  .reveal-card,
+  .reveal-terminal,
+  .reveal-text,
+  [data-story] .story-grid > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  .cursor-light {
+    display: none;
+  }
+}
