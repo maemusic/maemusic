@@ -1,7 +1,7 @@
 {
-  "name": "Minimalist Audio Engine",
-  "short_name": "MAE",
-  "description": "Music for people who live in terminals.",
+  "name": "MAE Music 2.1.0",
+  "short_name": "MAE Music",
+  "description": "Ad-free music for people who live in terminals.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#08090b",

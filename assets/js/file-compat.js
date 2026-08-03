@@ -294,6 +294,33 @@
       ["mae exit", "M X", "Hard-stop the daemon and child mpv processes."],
       ["mae help", "M ?", "List commands registered by installed MAE apps."],
     ];
+    reference.splice(0, reference.length,
+      ["mae play <query>", "PLAY", "Search up to 30 matches and choose from paginated results."],
+      ["mae pause", "PAUSE", "Pause the current track."],
+      ["mae resume", "RESUME", "Resume the current track."],
+      ["mae skip", "SKIP", "Start the next queued track."],
+      ["mae stop", "STOP", "Stop playback and clear the queue."],
+      ["mae queue <query>", "QUEUE", "Search and add a selected track without interrupting playback."],
+      ["mae queue", "NOW", "Show the current track and upcoming queue."],
+      ["mae playlist save <name>", "SAVE", "Save the current track and queue as a playlist snapshot."],
+      ["mae playlist load <name>", "LOAD", "Load a playlist and immediately start its first track."],
+      ["mae playlist list", "LIST", "List saved playlists."],
+      ["mae playlist delete <name>", "DELETE", "Permanently delete a saved playlist."],
+      ["mae history", "HISTORY", "Show the last 20 played tracks."],
+      ["mae replay <number>", "REPLAY", "Play a specific history item."],
+      ["mae fav", "FAV", "Add the current track to favourites."],
+      ["mae fav list", "FAV LIST", "Show saved favourites."],
+      ["mae fav remove", "REMOVE", "Remove the current track from favourites."],
+      ["mae volume <number>", "VOLUME", "Set an exact volume percentage."],
+      ["mae volume +", "+10", "Increase volume by 10 percent."],
+      ["mae volume -", "-10", "Decrease volume by 10 percent."],
+      ["mae mute", "MUTE", "Toggle mute."],
+      ["mae crystal", "FX", "Toggle the clarity filter."],
+      ["mae clear", "FX", "Toggle the presence filter."],
+      ["mae tape", "FX", "Toggle the lo-fi tape filter."],
+      ["mae night", "FX", "Toggle the quiet-listening filter."],
+      ["mae status", "STATUS", "Show playback, queue, and active effects."]
+    );
     reference.forEach((item) => {
       if (!item[0].startsWith("mae ")) item[0] = "mae " + item[0];
     });
@@ -387,6 +414,29 @@
         ],
       },
     ];
+    commands[0] = {
+      command: "mae play lofi beats",
+      output: [
+        "Search: lofi beats",
+        "Page 1 of 3 - 10 results",
+        "",
+        "1. lofi beats to relax/study to",
+        "2. Lofi Hip Hop Radio",
+        "",
+        '<span class="playing">1-10 select | n next | p previous | r refine | q cancel</span>',
+      ],
+    };
+    commands[1] = {
+      command: "mae queue resonance",
+      output: [
+        "Search: resonance",
+        "Select a result to add without interrupting playback.",
+        "",
+        '<span class="playing">Current track continues. No ads in the queue.</span>',
+        "",
+        "One command. One clean response.",
+      ],
+    };
     const commandElement = document.querySelector("[data-demo-command]");
     const heroOutput = document.querySelector("[data-demo-output]");
     const terminal = document.querySelector("[data-terminal-demo]");
@@ -431,7 +481,7 @@
       output.append(p);
       output.scrollTop = output.scrollHeight;
     };
-    const response = (raw) => {
+    let response = (raw) => {
       const normalized = raw.toLowerCase().trim().replace(/^mae\s+/, "");
       if (normalized === "help")
         return [
@@ -485,6 +535,40 @@
         "Command not found: " + escapeHtml(raw),
         "Try <kbd>mae help</kbd>, <kbd>mae play after dark</kbd>, <kbd>mae status</kbd>, or <kbd>mae exit</kbd>.",
       ];
+    };
+    response = (raw) => {
+      const request = raw.toLowerCase().trim().replace(/^mae\s+/, "");
+      const search = (query, queueing) => [
+        (queueing ? "Queue selection" : "Play selection") + ': search results for "' + escapeHtml(query) + '"',
+        "Page 1 of 3 - 10 results",
+        "1. Lofi beats to relax/study to",
+        "2. Resonance - HOME",
+        "3. Snowfall - oneheart",
+        '<span class="success">1-10 select | n next | p previous | r refine | q cancel</span>',
+      ];
+      if (request === "help") return ["MAE Music 2.1.0", "play | pause | resume | skip | stop | queue | status", "playlist | history | replay | fav | volume | mute", "crystal | clear | tape | night"];
+      if (request.startsWith("play ")) return search(request.slice(5), false);
+      if (request === "queue") return ['<span class="success">Now playing: After Dark - Mr.Kitty</span>', "Queue", "1. Resonance - HOME", "2. Midnight City - M83"];
+      if (request.startsWith("queue ") || request.startsWith("q ")) return search(request.replace(/^(queue|q)\s+/, ""), true);
+      if (request === "pause") return ['<span class="success">Paused.</span>'];
+      if (request === "resume") return ['<span class="success">Resumed.</span>'];
+      if (request === "skip") return ['<span class="success">Skipped to the next track.</span>'];
+      if (request === "stop") return ['<span class="success">Stopped playback. Queue cleared.</span>'];
+      if (request === "status") return ['<span class="success">After Dark - Mr.Kitty</span>', "01:42 / 03:49", "Queue: 2", "FX: night, crystal"];
+      if (request.startsWith("playlist save ")) return ['<span class="success">Saved playlist "' + escapeHtml(request.slice(14)) + '".</span>', "Snapshot includes the current track and queue."];
+      if (request.startsWith("playlist load ")) return ['<span class="success">Loaded playlist "' + escapeHtml(request.slice(14)) + '".</span>', "Playing its first track now."];
+      if (request === "playlist list") return ["Saved playlists", "driving", "late-night", "focus"];
+      if (request.startsWith("playlist delete ")) return ['<span class="success">Deleted playlist "' + escapeHtml(request.slice(16)) + '".</span>'];
+      if (request === "history") return ["Recent history", "1. After Dark - Mr.Kitty", "2. Resonance - HOME", "3. Snowfall - oneheart"];
+      if (request.startsWith("replay ")) return ['<span class="success">Replaying history item ' + escapeHtml(request.slice(7)) + ".</span>"];
+      if (request === "fav") return ['<span class="success">Added to favourites: After Dark - Mr.Kitty</span>'];
+      if (request === "fav list") return ["Favourites", "1. After Dark - Mr.Kitty", "2. Resonance - HOME"];
+      if (request === "fav remove") return ['<span class="success">Removed the current track from favourites.</span>'];
+      if (request.startsWith("volume ")) return ['<span class="success">Volume: ' + escapeHtml(request.slice(7)) + "%</span>"];
+      if (request === "mute") return ['<span class="success">Muted.</span>'];
+      if (["crystal", "clear", "tape", "night"].includes(request)) return ['<span class="success">' + escapeHtml(request) + " enabled.</span>", "Active FX can be stacked."];
+      if (!request) return [];
+      return ["Command not found: " + escapeHtml(raw), "Try <kbd>mae help</kbd>, <kbd>mae play lofi beats</kbd>, <kbd>mae queue</kbd>, or <kbd>mae status</kbd>."];
     };
     const execute = async (value) => {
       const command = value.trim();

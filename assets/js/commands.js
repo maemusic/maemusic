@@ -1,13 +1,30 @@
-/** Copy affordances and the live MAE Core command reference. */
+/** Complete MAE Music 2.1.0 command reference plus shared copy controls. */
 const commandReference = [
-  ["mae play <query>", "M P", "Route a search to the MAE Music sandbox and return results without locking your terminal."],
-  ["mae queue <query>", "M Q", "Send a stateless queue request to the background daemon."],
-  ["mae pause", "M ⏎", "Pause or resume the active MAE Music daemon session."],
-  ["mae skip", "M N", "Advance the current queue through the same local TCP command channel."],
-  ["mae status", "M S", "Check the Core Hub registry, router target, and daemon state."],
-  ["mae logs", "M L", "Open the local daemon.log trail for silent diagnostics."],
-  ["mae exit", "M X", "Hard-stop the MAE Music daemon and every child mpv process."],
-  ["mae help", "M ?", "List commands registered by the MAE apps currently installed."]
+  ["mae play <query>", "PLAY", "Search up to 30 matches and open a paginated selection menu with 10 results per page."],
+  ["mae pause", "PAUSE", "Pause the current track."],
+  ["mae resume", "RESUME", "Resume the current track."],
+  ["mae skip", "SKIP", "Immediately start the next queued track."],
+  ["mae stop", "STOP", "Stop playback and clear the queue."],
+  ["mae queue <query>", "QUEUE", "Search for a song and add your selected result without interrupting the current track."],
+  ["mae queue", "NOW", "Show the currently playing track and the full upcoming queue."],
+  ["mae playlist save <name>", "SAVE", "Save the current track and queue as a lightweight playlist snapshot."],
+  ["mae playlist load <name>", "LOAD", "Replace the queue with a saved playlist and immediately begin with its first track."],
+  ["mae playlist list", "LIST", "List every saved playlist."],
+  ["mae playlist delete <name>", "DELETE", "Permanently delete one saved playlist."],
+  ["mae history", "HISTORY", "Show your 20 most recently played tracks."],
+  ["mae replay <number>", "REPLAY", "Instantly play an item from history."],
+  ["mae fav", "FAV", "Add the currently playing track to permanent favourites."],
+  ["mae fav list", "FAV LIST", "Show all saved favourites."],
+  ["mae fav remove", "REMOVE", "Remove the currently playing track from favourites."],
+  ["mae volume <number>", "VOLUME", "Set volume to an exact percentage."],
+  ["mae volume +", "+10", "Increase volume by 10 percent."],
+  ["mae volume -", "-10", "Decrease volume by 10 percent."],
+  ["mae mute", "MUTE", "Toggle mute on or off."],
+  ["mae crystal", "FX", "Toggle a clarity and transient-response boost. Effects can stack."],
+  ["mae clear", "FX", "Reduce muddy low-mids and increase presence. Effects can stack."],
+  ["mae tape", "FX", "Add subtle vibrato and a lo-fi high-cut. Effects can stack."],
+  ["mae night", "FX", "Boost bass and extreme highs for quiet listening. Effects can stack."],
+  ["mae status", "STATUS", "Print the current track, time, queue count, and active effects."],
 ];
 
 function renderReference() {

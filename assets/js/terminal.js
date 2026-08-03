@@ -1,28 +1,28 @@
-/** MAE v2 terminal displays: Core routing, daemon responses, and local playground state. */
+/** MAE Music 2.1.0 terminal demonstrations and local playground responses. */
 import { escapeHtml, prefersReducedMotion, wait } from "./utilities.js";
 
 const heroScenes = [
   {
-    command: "mae play after dark",
+    command: "mae play lofi beats",
     output: [
-      "Router: registry.json → MAE Music",
-      "Searching YouTube...",
+      "Search: lofi beats",
+      "Page 1 of 3 - 10 results",
       "",
-      "1. After Dark — Mr.Kitty",
-      "2. After Dark x Sweater Weather",
+      "1. lofi beats to relax/study to",
+      "2. Lofi Hip Hop Radio",
       "",
-      '<span class="playing">Daemon now playing: After Dark — Mr.Kitty</span>',
+      '<span class="playing">1-10 select | n next | p previous | r refine | q cancel</span>',
     ],
   },
   {
-    command: "mae q resonance",
+    command: "mae queue resonance",
     output: [
-      "Router: MAE Music → localhost daemon",
-      "Added to queue:",
+      "Search: resonance",
+      "Select a result to add without interrupting playback.",
       "",
-      '<span class="playing">02. Resonance — HOME</span>',
+      '<span class="playing">Current track continues. No ads in the queue.</span>',
       "",
-      "Terminal returned in 0.18s",
+      "One command. One clean response.",
     ],
   },
 ];
@@ -55,11 +55,23 @@ async function runHeroTerminal() {
         paragraph.style.transition = "opacity .25s ease";
         paragraph.style.opacity = "1";
       });
-      await wait(line ? 190 : 90);
+      await wait(line ? 170 : 90);
     }
-    await wait(2700);
+    await wait(2900);
     sceneIndex = (sceneIndex + 1) % heroScenes.length;
   }
+}
+
+function searchResponse(query, queueing) {
+  const action = queueing ? "Queue selection" : "Play selection";
+  return [
+    action + ': search results for "' + escapeHtml(query) + '"',
+    "Page 1 of 3 - 10 results",
+    "1. Lofi beats to relax/study to",
+    "2. Resonance - HOME",
+    "3. Snowfall - oneheart",
+    '<span class="success">1-10 select | n next | p previous | r refine | q cancel</span>',
+  ];
 }
 
 function responseFor(command) {
@@ -67,61 +79,54 @@ function responseFor(command) {
   const request = normalized.replace(/^mae\s+/, "");
   if (request === "help") {
     return [
-      "Registered MAE commands:",
-      "mae play &lt;query&gt; · mae q &lt;query&gt; · mae status",
-      "mae pause · mae skip · mae logs · mae exit",
+      "MAE Music 2.1.0",
+      "play | pause | resume | skip | stop | queue | status",
+      "playlist | history | replay | fav | volume | mute",
+      "crystal | clear | tape | night",
     ];
   }
-  if (request.startsWith("play ")) {
+  if (request.startsWith("play ")) return searchResponse(request.slice(5).trim(), false);
+  if (request === "queue") {
     return [
-      "Router → MAE Music → localhost daemon",
-      'Searching for "' + escapeHtml(request.slice(5).trim()) + '"...',
-      '<span class="success">Now playing: After Dark — Mr.Kitty</span>',
-      "Structured NDJSON response received.",
+      '<span class="success">Now playing: After Dark - Mr.Kitty</span>',
+      "Queue",
+      "1. Resonance - HOME",
+      "2. Midnight City - M83",
     ];
   }
-  if (request.startsWith("q ") || request.startsWith("queue ")) {
-    return [
-      "Router → MAE Music → localhost daemon",
-      '<span class="success">Added to queue: Resonance — HOME</span>',
-      "Terminal control returned in 0.18s.",
-    ];
+  if (request.startsWith("queue ") || request.startsWith("q ")) {
+    return searchResponse(request.replace(/^(queue|q)\s+/, ""), true);
   }
+  if (request === "pause") return ['<span class="success">Paused.</span>'];
+  if (request === "resume") return ['<span class="success">Resumed.</span>'];
+  if (request === "skip") return ['<span class="success">Skipped to the next track.</span>'];
+  if (request === "stop") return ['<span class="success">Stopped playback. Queue cleared.</span>'];
   if (request === "status") {
     return [
-      '<span class="success">Core Hub online · MAE Music registered</span>',
-      "Router target: apps\\music\\music.exe",
-      "Daemon: listening on authenticated localhost TCP.",
+      '<span class="success">After Dark - Mr.Kitty</span>',
+      "01:42 / 03:49",
+      "Queue: 2",
+      "FX: night, crystal",
     ];
   }
-  if (request === "logs") {
-    return [
-      '<span class="success">Opened daemon.log</span>',
-      "State and error events are recorded locally without interrupting your terminal.",
-    ];
-  }
-  if (request === "exit") {
-    return [
-      '<span class="success">Stopping MAE Music daemon</span>',
-      "Terminated child mpv processes. No orphaned audio remains.",
-    ];
-  }
-  if (request === "night") {
-    return [
-      '<span class="success">Enabled FX: night</span>',
-      "The Music daemon applied the late-night preset.",
-    ];
-  }
-  if (["norm", "xf", "clear", "pause", "skip", "fw", "bw"].includes(request)) {
-    return [
-      '<span class="success">Daemon command accepted: ' + escapeHtml(request) + "</span>",
-      "Structured NDJSON response received over localhost.",
-    ];
+  if (request.startsWith("playlist save ")) return ['<span class="success">Saved playlist "' + escapeHtml(request.slice(14)) + '".</span>', "Snapshot includes the current track and queue."];
+  if (request.startsWith("playlist load ")) return ['<span class="success">Loaded playlist "' + escapeHtml(request.slice(14)) + '".</span>', "Playing its first track now."];
+  if (request === "playlist list") return ["Saved playlists", "driving", "late-night", "focus"];
+  if (request.startsWith("playlist delete ")) return ['<span class="success">Deleted playlist "' + escapeHtml(request.slice(16)) + '".</span>'];
+  if (request === "history") return ["Recent history", "1. After Dark - Mr.Kitty", "2. Resonance - HOME", "3. Snowfall - oneheart"];
+  if (request.startsWith("replay ")) return ['<span class="success">Replaying history item ' + escapeHtml(request.slice(7)) + ".</span>"];
+  if (request === "fav") return ['<span class="success">Added to favourites: After Dark - Mr.Kitty</span>'];
+  if (request === "fav list") return ["Favourites", "1. After Dark - Mr.Kitty", "2. Resonance - HOME"];
+  if (request === "fav remove") return ['<span class="success">Removed the current track from favourites.</span>'];
+  if (request.startsWith("volume ")) return ['<span class="success">Volume: ' + escapeHtml(request.slice(7)) + "%</span>"];
+  if (request === "mute") return ['<span class="success">Muted.</span>'];
+  if (["crystal", "clear", "tape", "night"].includes(request)) {
+    return ['<span class="success">' + escapeHtml(request) + " enabled.</span>", "Active FX can be stacked."];
   }
   if (!request) return [];
   return [
     "Command not found: " + escapeHtml(command),
-    "Try <kbd>mae help</kbd>, <kbd>mae play after dark</kbd>, <kbd>mae status</kbd>, or <kbd>mae exit</kbd>.",
+    "Try <kbd>mae help</kbd>, <kbd>mae play lofi beats</kbd>, <kbd>mae queue</kbd>, or <kbd>mae status</kbd>.",
   ];
 }
 
